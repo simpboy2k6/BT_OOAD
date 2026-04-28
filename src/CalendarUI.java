@@ -73,16 +73,6 @@ public class CalendarUI {
                 }
             }
 
-            Appointment similar = calendar.findSimilarMeeting(name, duration);
-            if (similar != null) {
-                if (askJoinGroupMeeting()) {
-                    similar.addParticipant(currentUser);
-                    System.out.println(">>> Đã tham gia vào nhóm có sẵn.");
-                    handleReminder(similar.getStartTime(), similar.getName());
-                    return;
-                }
-            }
-
             Appointment newAppt = new Appointment(name, location, startTime, duration);
             newAppt.addParticipant(currentUser);
             calendar.addAppointment(newAppt); // 
