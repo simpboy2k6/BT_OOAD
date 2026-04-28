@@ -117,9 +117,4 @@ public class CalendarUI {
     public boolean validateInput(String name, int duration) {
         return name != null && !name.trim().isEmpty() && duration > 0;
     }
-
-    public boolean askJoinGroupMeeting() {
-        System.out.print("Tìm thấy cuộc họp nhóm tương tự. Bạn có muốn THAM GIA? (y/n): ");
-        return scanner.nextLine().equalsIgnoreCase("y");
-    }
 }
