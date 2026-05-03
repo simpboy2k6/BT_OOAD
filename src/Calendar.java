@@ -20,14 +20,7 @@ public class Calendar {
         return null;
     }
 
-    public Appointment findSimilarMeeting(String name, int duration) {
-        for (Appointment appt : appointments) {
-            if (appt.getName().equalsIgnoreCase(name) && appt.getDuration() == duration) {
-                return appt;
-            }
-        }
-        return null;
-    }
+    
 
     public void addAppointment(Appointment appt) {
         appointments.add(appt);
