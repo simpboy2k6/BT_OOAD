@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        // 1. Khởi tạo hệ thống và dữ liệu mẫu
+        //Khởi tạo hệ thống và dữ liệu mẫu
         Calendar myCalendar = new Calendar();
         User student = new User("SV001", "Nguyen Van A");
         
@@ -14,7 +14,7 @@ public class App {
         );
         myCalendar.addAppointment(existingMeeting);
 
-        // 2. Khởi tạo giao diện
+        // Giao diện
         CalendarUI ui = new CalendarUI(myCalendar, student);
         Scanner menuScanner = new Scanner(System.in);
         boolean running = true;
@@ -32,7 +32,6 @@ public class App {
 
             switch (choice) {
                 case "1":
-                    // Kích hoạt luồng thêm cuộc họp
                     ui.displayForm();
                     break;
                 case "2":

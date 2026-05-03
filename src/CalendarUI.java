@@ -27,10 +27,10 @@ public class CalendarUI {
         while (true) {
             System.out.println("\n=== Form: Thêm cuộc họp mới ===");
 
-            // 1. Nhập thời gian
+            // Nhập thời gian
             LocalDateTime startTime = inputDateTime(); 
             
-            // 2. Nhập tham số cuộc họp 
+            // Nhập tham số cuộc họp
             System.out.print("Nhập tên cuộc hẹn: ");
             String name = scanner.nextLine();
             System.out.print("Nhập địa điểm: ");
@@ -38,7 +38,7 @@ public class CalendarUI {
             System.out.print("Nhập thời lượng (phút): ");
             int duration = Integer.parseInt(scanner.nextLine());
 
-            // 2.1. Kiểm tra tính hợp lệ 
+            // Kiểm tra tính hợp lệ
             if (!validateInput(name, duration)) {
                 System.out.println(">>> 2.2. Báo lỗi: Tham số không hợp lệ!");
                 System.out.print("Bạn có muốn nhập lại không? (y/n): ");
@@ -48,20 +48,19 @@ public class CalendarUI {
 
             LocalDateTime endTime = startTime.plusMinutes(duration);
 
-            // 2.3. Kiểm tra xung đột thời gian
+            // Kiểm tra xung đột thời gian
             Appointment conflict = calendar.checkConflict(startTime, endTime);
 
             if (conflict != null) { 
-                System.out.println("! Xung đột với: " + conflict.getName());
-                
-                // Hiển thị 3 lựa chọn: replace, retry, hoặc hủy
+                System.out.println(" Xung đột với: " + conflict.getName());
+
                 String choice = showConflictWarning(); 
                 
                 if (choice.equalsIgnoreCase("replace")) {
-                    // 3.1. Xóa cuộc hẹn cũ để thay thế 
+
                     calendar.removeAppointment(conflict);
                     System.out.println("- Đã loại bỏ cuộc hẹn cũ.");
-                    // Sau khi xóa, logic sẽ chạy tiếp xuống phần tạo mới ở dưới
+
                 } 
                 else if (choice.equalsIgnoreCase("retry")) {
                     System.out.println("- Chuẩn bị nhập lại thông tin...");
@@ -75,7 +74,7 @@ public class CalendarUI {
 
             Appointment newAppt = new Appointment(name, location, startTime, duration);
             newAppt.addParticipant(currentUser);
-            calendar.addAppointment(newAppt); // 
+            calendar.addAppointment(newAppt);
             
             System.out.println(">>> Cuộc hẹn đã được lưu thành công!");
             handleReminder(newAppt.getStartTime(), newAppt.getName());
@@ -84,11 +83,10 @@ public class CalendarUI {
         }
     }
 
-    // Các phương thức phụ trợ
     private void handleReminder(LocalDateTime start, String name) {
         System.out.print("Bạn có muốn thêm nhắc nhở cho cuộc hẹn này không? (y/n): ");
         if (scanner.nextLine().equalsIgnoreCase("y")) {
-            // 5.1. Add Reminder
+            // Add Reminder
             Reminder reminder = new Reminder(start.minusMinutes(15), "Nhắc nhở: " + name);
             calendar.addReminder(reminder);
             System.out.println("- Đã thêm nhắc nhở trước 15 phút.");

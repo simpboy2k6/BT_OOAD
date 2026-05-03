@@ -14,7 +14,7 @@ public class Calendar {
     public Appointment checkConflict(LocalDateTime start, LocalDateTime end) {
         for (Appointment appt : appointments) {
             if (start.isBefore(appt.getEndTime()) && end.isAfter(appt.getStartTime())) {
-                return appt; // Trả về cuộc hẹn bị xung đột 
+                return appt;
             }
         }
         return null;
